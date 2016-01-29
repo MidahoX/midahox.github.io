@@ -1,0 +1,71 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>MidahoX Demo Page</title>
+    <meta name="description" content="MidahoX demo page">
+    <meta name="author" content="MinhHo">
+
+    <!--<link rel="stylesheet" href="css/styles.css?v=1.0">-->
+
+    <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <h1>Word Highlighter</h1>
+    <div>
+        <nav></nav>
+        <div>
+            <input id='highlightInput' type='text' value='' placeholder="Enter texts which you want to highlight." />
+            <input id='highlightBtn' type='button' value='Highlight' />
+        </div>
+        <div id='content'>
+            <p>A regexp <i>pattern</i> matches a target <i>string</i>. The pattern is composed of a sequence of <i>atoms</i>.
+                An atom is a single point within the regexp pattern which it tries to match to the target string. The simplest
+                atom is a literal, but grouping parts of the pattern to match an atom will require using <code>(&nbsp;)</code>                as metacharacters. Metacharacters help form: <i>atoms</i>; <i>quantifiers</i> telling how many atoms (and
+                whether it is a <i>greedy</i> quantifier or not); a logical OR character, which offers a set of alternatives,
+                and a logical NOT character, which negates an atom's existence; and back references to refer to previous
+                atoms of a completing pattern of atoms. A match is made, not when all the atoms of the string are matched,
+                but rather when all the pattern atoms in the regexp have matched. The idea is to make a small pattern of
+                characters stand for a large number of possible strings, rather than compiling a large list of all the literal
+                possibilities.
+            </p>
+            <p>Depending on the regexp processor there are about fourteen metacharacters, characters that may or may not have
+                their <a href="/wiki/Literal_(computer_programming)" title="Literal (computer programming)">literal</a> character
+                meaning, depending on context, or whether they are "escaped", i.e. preceded by an <a href="/wiki/Escape_sequence"
+                title="Escape sequence">escape sequence</a>, in this case, the backslash <code>\</code>. Modern and POSIX
+                extended regexps use metacharacters more often than their literal meaning, so to avoid "backslash-osis" it
+                makes sense to have a metacharacter escape to a literal mode; but starting out, it makes more sense to have
+                the four bracketing metacharacters <code>(&nbsp;)</code> and <code>{&nbsp;}</code> be primarily literal,
+                and "escape" this usual meaning to become metacharacters. Common standards implement both. The usual metacharacters
+                are <code>{}[]()^$.|*+?</code> and <code>\</code>. The usual characters that become metacharacters when escaped
+                are <code>dsw.DSW</code> and <code>N</code>.</p>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="https://rawgit.com/MidahoX/hightlighter/master/word-highlighter-0.1.js"></script>
+    <script type="text/javascript">
+        function startHighlight() {
+            if (Highlighter) {
+                var targetInput = document.getElementById('highlightInput');
+                var textInput = targetInput.value;
+                Highlighter.show('content', textInput);
+            }
+        }
+        var targetInput = document.getElementById('highlightInput');
+        targetInput.addEventListener('keyup', function(e){
+            if(e.keyCode == 13)            
+                startHighlight()                   
+        }, false);
+        var targetBtn = document.getElementById('highlightBtn');
+        targetBtn.addEventListener('click', startHighlight, false);
+    </script>
+</body>
+
+</html>
